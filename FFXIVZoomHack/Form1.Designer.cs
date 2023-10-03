@@ -165,16 +165,21 @@
             // 
             this._heightUpDown.DecimalPlaces = 2;
             this._heightUpDown.Increment = new decimal(new int[] {
-            1,
+            25,
             0,
             0,
-            65536});
+            131072});
             this._heightUpDown.Location = new System.Drawing.Point(10, 246);
             this._heightUpDown.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
+            this._heightUpDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this._heightUpDown.Name = "_heightUpDown";
             this._heightUpDown.Size = new System.Drawing.Size(215, 26);
             this._heightUpDown.TabIndex = 16;

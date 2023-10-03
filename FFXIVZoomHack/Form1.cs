@@ -39,7 +39,7 @@ namespace FFXIVZoomHack
         const long pMaxFOV = 0x128;
         const long pYMin = 0x148;
         const long pYMax = 0x14C;
-        const long pHeight = 0x230;
+        const long pHeight = 0x224;
 
         private NotifyIcon _notifyIcon;
         
@@ -290,7 +290,7 @@ namespace FFXIVZoomHack
         {
             _settings.DesiredHeight = (float)_heightUpDown.Value;
             SettingSave(_settings);
-            //ApplyChanges();
+            ApplyChanges();
         }
 
         private void _yMaxUpDown_ValueChanged(object sender, EventArgs e)
