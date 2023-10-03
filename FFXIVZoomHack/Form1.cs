@@ -37,6 +37,8 @@ namespace FFXIVZoomHack
         const long pCurrentFOV = 0x120;
         const long pMinFOV = 0x124;
         const long pMaxFOV = 0x128;
+        const long pYMin = 0x14C;
+        const long pYMax = 0x148;
 
         private NotifyIcon _notifyIcon;
         
@@ -171,12 +173,19 @@ namespace FFXIVZoomHack
             var ZoomBytes = BitConverter.GetBytes(Convert.ToSingle(_zoomUpDown.Value));
             var FOVBytes = BitConverter.GetBytes(Convert.ToSingle(_fovUpDown.Value));
 
+            var YMinBytes = BitConverter.GetBytes(Convert.ToSingle(_yMinUpDown.Value));
+            var YMaxBytes = BitConverter.GetBytes(Convert.ToSingle(_yMaxUpDown.Value));
+
             Parallel.ForEach(_processCollection.Keys, mReader => {
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinZoom), BitConverter.GetBytes(Convert.ToSingle(0.01)));
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxZoom), ZoomBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), BitConverter.GetBytes(Convert.ToSingle(0.01)));
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), FOVBytes);
+
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), YMinBytes);
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), YMaxBytes);
+
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentFOV), FOVBytes);
             });
         }
@@ -248,6 +257,40 @@ namespace FFXIVZoomHack
                   Hide();  
                   _notifyIcon.Visible = true;                  
              }   
+        }
+
+        private void ReadyIndicator_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _zoomSettingsBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _yMinUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _settings.DesiredYMin = (float)_yMinUpDown.Value;
+            SettingSave(_settings);
+            ApplyChanges();
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _yMaxUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            _settings.DesiredYMax = (float)_yMaxUpDown.Value;
+            SettingSave(_settings);
+            ApplyChanges();
         }
     }
 }

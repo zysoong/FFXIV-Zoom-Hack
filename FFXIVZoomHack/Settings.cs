@@ -10,7 +10,11 @@ namespace FFXIVZoomHack
         public bool AutoQuit { get; set; }
         public float DesiredFov { get; set; }
         public float DesiredZoom { get; set; }
-        
+        public float DesiredYMin { get; set; }
+        public float DesiredYMax { get; set; }
+        public float DesiredPanX { get; set; }
+        public float DesiredPanY { get; set; }
+
         public AppSettings()
         {
             AutoApply = true;
