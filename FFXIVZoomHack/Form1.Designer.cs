@@ -198,55 +198,60 @@
             // 
             // _yMaxUpDown
             // 
-            this._yMaxUpDown.DecimalPlaces = 2;
+            this._yMaxUpDown.DecimalPlaces = 7;
             this._yMaxUpDown.Increment = new decimal(new int[] {
             1,
             0,
             0,
-            131072});
+            196608});
             this._yMaxUpDown.Location = new System.Drawing.Point(243, 162);
             this._yMaxUpDown.Maximum = new decimal(new int[] {
-            1000,
+            8,
             0,
             0,
-            131072});
+            0});
             this._yMaxUpDown.Minimum = new decimal(new int[] {
-            1,
+            8,
             0,
             0,
-            131072});
+            -2147483648});
             this._yMaxUpDown.Name = "_yMaxUpDown";
             this._yMaxUpDown.Size = new System.Drawing.Size(215, 26);
             this._yMaxUpDown.TabIndex = 11;
             this._yMaxUpDown.Value = new decimal(new int[] {
-            2,
+            785398,
             0,
             0,
-            0});
+            393216});
             this._yMaxUpDown.ValueChanged += new System.EventHandler(this._yMaxUpDown_ValueChanged);
             // 
             // _yMinUpDown
             // 
-            this._yMinUpDown.DecimalPlaces = 2;
+            this._yMinUpDown.DecimalPlaces = 7;
+            this._yMinUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            196608});
             this._yMinUpDown.Location = new System.Drawing.Point(10, 162);
             this._yMinUpDown.Maximum = new decimal(new int[] {
-            1000,
+            8,
             0,
             0,
             0});
             this._yMinUpDown.Minimum = new decimal(new int[] {
-            1,
+            8,
             0,
             0,
-            131072});
+            -2147483648});
             this._yMinUpDown.Name = "_yMinUpDown";
             this._yMinUpDown.Size = new System.Drawing.Size(215, 26);
             this._yMinUpDown.TabIndex = 10;
             this._yMinUpDown.Value = new decimal(new int[] {
-            1,
+            1483530,
             0,
             0,
-            131072});
+            -2147090432});
             this._yMinUpDown.ValueChanged += new System.EventHandler(this._yMinUpDown_ValueChanged);
             // 
             // label3

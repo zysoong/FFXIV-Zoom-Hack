@@ -183,8 +183,8 @@ namespace FFXIVZoomHack
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), BitConverter.GetBytes(Convert.ToSingle(0.01)));
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), FOVBytes);
 
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), YMinBytes);
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), YMaxBytes);
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMin), YMinBytes);
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMax), YMaxBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentFOV), FOVBytes);
             });
