@@ -37,6 +37,7 @@ namespace FFXIVZoomHack
         const long pCurrentFOV = 0x120;
         const long pMinFOV = 0x124;
         const long pMaxFOV = 0x128;
+        const long pCurrentFov = 0x120;
         const long pYMin = 0x148;
         const long pYMax = 0x14C;
         const long pHeight = 0x224;
@@ -180,18 +181,19 @@ namespace FFXIVZoomHack
             var HeightBytes = BitConverter.GetBytes(Convert.ToSingle(_heightUpDown.Value));
 
             Parallel.ForEach(_processCollection.Keys, mReader => {
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinZoom), BitConverter.GetBytes(Convert.ToSingle(0.01)));
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxZoom), ZoomBytes);
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinZoom), BitConverter.GetBytes(Convert.ToSingle(0.001)));
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxZoom), BitConverter.GetBytes(Convert.ToSingle(20)));
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentZoom), ZoomBytes);
 
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), BitConverter.GetBytes(Convert.ToSingle(0.01)));
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), FOVBytes);
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), FOVBytes);
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentFOV), FOVBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMin), YMinBytes);
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMax), YMaxBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pHeight), HeightBytes);
 
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentFOV), FOVBytes);
             });
         }
 
@@ -305,19 +307,36 @@ namespace FFXIVZoomHack
 
         }
 
-        private void yMin_Profile_Click(object sender, EventArgs e)
+        private void _profile1_Click(object sender, EventArgs e)
         {
-
+            _zoomUpDown.Value = 2.00m;
+            _fovUpDown.Value = 0.78m;
+            _heightUpDown.Value = 0.0m;
+            _yMinUpDown.Value = 0.64m;
+            _yMaxUpDown.Value = 0.05m;
         }
 
-        private void yMax_Profile_Click(object sender, EventArgs e)
+        private void _profile2_Click(object sender, EventArgs e)
         {
-
+            _zoomUpDown.Value = 2.4m;
+            _fovUpDown.Value = 0.78m;
+            _heightUpDown.Value = 0.00m;
+            _yMinUpDown.Value = 0.48m;
+            _yMaxUpDown.Value = 0.13m;
         }
 
         private void _yMaxDefaultButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void _default_Click(object sender, EventArgs e)
+        {
+            _zoomUpDown.Value = 3.4m;
+            _fovUpDown.Value = 0.78m;
+            _heightUpDown.Value = 0.10m;
+            _yMinUpDown.Value = -0.03m;
+            _yMaxUpDown.Value = 0.00m;
         }
     }
 }
