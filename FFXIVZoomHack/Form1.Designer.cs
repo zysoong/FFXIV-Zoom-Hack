@@ -32,8 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this._autoApplyCheckbox = new System.Windows.Forms.CheckBox();
             this._zoomSettingsBox = new System.Windows.Forms.GroupBox();
+            this.yMax_Profile = new System.Windows.Forms.Button();
+            this.yMin_Profile = new System.Windows.Forms.Button();
             this._panYUpDown = new System.Windows.Forms.NumericUpDown();
-            this._panXUpDown = new System.Windows.Forms.NumericUpDown();
+            this._heightUpDown = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this._yMaxDefaultButton = new System.Windows.Forms.Button();
@@ -58,7 +60,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this._zoomSettingsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._panYUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._panXUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._heightUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._yMaxUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._yMinUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._fovUpDown)).BeginInit();
@@ -84,8 +86,10 @@
             this._zoomSettingsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._zoomSettingsBox.Controls.Add(this.yMax_Profile);
+            this._zoomSettingsBox.Controls.Add(this.yMin_Profile);
             this._zoomSettingsBox.Controls.Add(this._panYUpDown);
-            this._zoomSettingsBox.Controls.Add(this._panXUpDown);
+            this._zoomSettingsBox.Controls.Add(this._heightUpDown);
             this._zoomSettingsBox.Controls.Add(this.label5);
             this._zoomSettingsBox.Controls.Add(this.label4);
             this._zoomSettingsBox.Controls.Add(this._yMaxDefaultButton);
@@ -108,6 +112,26 @@
             this._zoomSettingsBox.TabStop = false;
             this._zoomSettingsBox.Text = "Zoom Settings";
             this._zoomSettingsBox.Enter += new System.EventHandler(this._zoomSettingsBox_Enter);
+            // 
+            // yMax_Profile
+            // 
+            this.yMax_Profile.Location = new System.Drawing.Point(388, 130);
+            this.yMax_Profile.Name = "yMax_Profile";
+            this.yMax_Profile.Size = new System.Drawing.Size(70, 26);
+            this.yMax_Profile.TabIndex = 19;
+            this.yMax_Profile.Text = "Profile";
+            this.yMax_Profile.UseVisualStyleBackColor = true;
+            this.yMax_Profile.Click += new System.EventHandler(this.yMax_Profile_Click);
+            // 
+            // yMin_Profile
+            // 
+            this.yMin_Profile.Location = new System.Drawing.Point(156, 130);
+            this.yMin_Profile.Name = "yMin_Profile";
+            this.yMin_Profile.Size = new System.Drawing.Size(69, 26);
+            this.yMin_Profile.TabIndex = 18;
+            this.yMin_Profile.Text = "Profile";
+            this.yMin_Profile.UseVisualStyleBackColor = true;
+            this.yMin_Profile.Click += new System.EventHandler(this.yMin_Profile_Click);
             // 
             // _panYUpDown
             // 
@@ -137,28 +161,24 @@
             0,
             0});
             // 
-            // _panXUpDown
+            // _heightUpDown
             // 
-            this._panXUpDown.Location = new System.Drawing.Point(10, 246);
-            this._panXUpDown.Maximum = new decimal(new int[] {
+            this._heightUpDown.DecimalPlaces = 2;
+            this._heightUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this._heightUpDown.Location = new System.Drawing.Point(10, 246);
+            this._heightUpDown.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
-            this._panXUpDown.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this._panXUpDown.Name = "_panXUpDown";
-            this._panXUpDown.Size = new System.Drawing.Size(215, 26);
-            this._panXUpDown.TabIndex = 16;
-            this._panXUpDown.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this._panXUpDown.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
+            this._heightUpDown.Name = "_heightUpDown";
+            this._heightUpDown.Size = new System.Drawing.Size(215, 26);
+            this._heightUpDown.TabIndex = 16;
+            this._heightUpDown.ValueChanged += new System.EventHandler(this._heightUpDown_ValueChanged);
             // 
             // label5
             // 
@@ -174,27 +194,29 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 223);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(48, 20);
+            this.label4.Size = new System.Drawing.Size(56, 20);
             this.label4.TabIndex = 14;
-            this.label4.Text = "PanX";
+            this.label4.Text = "Height";
             // 
             // _yMaxDefaultButton
             // 
-            this._yMaxDefaultButton.Location = new System.Drawing.Point(362, 130);
+            this._yMaxDefaultButton.Location = new System.Drawing.Point(312, 130);
             this._yMaxDefaultButton.Name = "_yMaxDefaultButton";
-            this._yMaxDefaultButton.Size = new System.Drawing.Size(96, 26);
+            this._yMaxDefaultButton.Size = new System.Drawing.Size(70, 26);
             this._yMaxDefaultButton.TabIndex = 13;
             this._yMaxDefaultButton.Text = "Default";
             this._yMaxDefaultButton.UseVisualStyleBackColor = true;
+            this._yMaxDefaultButton.Click += new System.EventHandler(this._yMaxDefaultButton_Click);
             // 
             // _yMinDefaultButton
             // 
-            this._yMinDefaultButton.Location = new System.Drawing.Point(129, 130);
+            this._yMinDefaultButton.Location = new System.Drawing.Point(81, 130);
             this._yMinDefaultButton.Name = "_yMinDefaultButton";
-            this._yMinDefaultButton.Size = new System.Drawing.Size(96, 26);
+            this._yMinDefaultButton.Size = new System.Drawing.Size(69, 26);
             this._yMinDefaultButton.TabIndex = 12;
             this._yMinDefaultButton.Text = "Default";
             this._yMinDefaultButton.UseVisualStyleBackColor = true;
+            this._yMinDefaultButton.Click += new System.EventHandler(this._yMinDefaultButton_Click);
             // 
             // _yMaxUpDown
             // 
@@ -203,7 +225,7 @@
             1,
             0,
             0,
-            196608});
+            131072});
             this._yMaxUpDown.Location = new System.Drawing.Point(243, 162);
             this._yMaxUpDown.Maximum = new decimal(new int[] {
             8,
@@ -232,7 +254,7 @@
             1,
             0,
             0,
-            196608});
+            131072});
             this._yMinUpDown.Location = new System.Drawing.Point(10, 162);
             this._yMinUpDown.Maximum = new decimal(new int[] {
             8,
@@ -456,7 +478,7 @@
             this._zoomSettingsBox.ResumeLayout(false);
             this._zoomSettingsBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this._panYUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._panXUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._heightUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._yMaxUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._yMinUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this._fovUpDown)).EndInit();
@@ -493,9 +515,11 @@
         private System.Windows.Forms.Button _yMaxDefaultButton;
         private System.Windows.Forms.Button _yMinDefaultButton;
         private System.Windows.Forms.NumericUpDown _panYUpDown;
-        private System.Windows.Forms.NumericUpDown _panXUpDown;
+        private System.Windows.Forms.NumericUpDown _heightUpDown;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button yMax_Profile;
+        private System.Windows.Forms.Button yMin_Profile;
     }
 }
 

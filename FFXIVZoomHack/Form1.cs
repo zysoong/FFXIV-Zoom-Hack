@@ -37,8 +37,9 @@ namespace FFXIVZoomHack
         const long pCurrentFOV = 0x120;
         const long pMinFOV = 0x124;
         const long pMaxFOV = 0x128;
-        const long pYMin = 0x14C;
-        const long pYMax = 0x148;
+        const long pYMin = 0x148;
+        const long pYMax = 0x14C;
+        const long pHeight = 0x230;
 
         private NotifyIcon _notifyIcon;
         
@@ -176,6 +177,8 @@ namespace FFXIVZoomHack
             var YMinBytes = BitConverter.GetBytes(Convert.ToSingle(_yMinUpDown.Value));
             var YMaxBytes = BitConverter.GetBytes(Convert.ToSingle(_yMaxUpDown.Value));
 
+            var HeightBytes = BitConverter.GetBytes(Convert.ToSingle(_heightUpDown.Value));
+
             Parallel.ForEach(_processCollection.Keys, mReader => {
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinZoom), BitConverter.GetBytes(Convert.ToSingle(0.01)));
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxZoom), ZoomBytes);
@@ -185,6 +188,8 @@ namespace FFXIVZoomHack
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMin), YMinBytes);
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMax), YMaxBytes);
+
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pHeight), HeightBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentFOV), FOVBytes);
             });
@@ -281,9 +286,11 @@ namespace FFXIVZoomHack
             ApplyChanges();
         }
 
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        private void _heightUpDown_ValueChanged(object sender, EventArgs e)
         {
-
+            _settings.DesiredHeight = (float)_heightUpDown.Value;
+            SettingSave(_settings);
+            //ApplyChanges();
         }
 
         private void _yMaxUpDown_ValueChanged(object sender, EventArgs e)
@@ -291,6 +298,26 @@ namespace FFXIVZoomHack
             _settings.DesiredYMax = (float)_yMaxUpDown.Value;
             SettingSave(_settings);
             ApplyChanges();
+        }
+
+        private void _yMinDefaultButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yMin_Profile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void yMax_Profile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void _yMaxDefaultButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
