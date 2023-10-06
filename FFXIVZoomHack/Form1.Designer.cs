@@ -59,6 +59,7 @@
             this._processList = new System.Windows.Forms.ComboBox();
             this._autoQuitTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this._profile3 = new System.Windows.Forms.Button();
             this._zoomSettingsBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._panYUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this._heightUpDown)).BeginInit();
@@ -87,6 +88,7 @@
             this._zoomSettingsBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this._zoomSettingsBox.Controls.Add(this._profile3);
             this._zoomSettingsBox.Controls.Add(this.button1);
             this._zoomSettingsBox.Controls.Add(this._profile2);
             this._zoomSettingsBox.Controls.Add(this._profile1);
@@ -477,6 +479,16 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.Timer1Tick);
             // 
+            // _profile3
+            // 
+            this._profile3.Location = new System.Drawing.Point(254, 289);
+            this._profile3.Name = "_profile3";
+            this._profile3.Size = new System.Drawing.Size(70, 26);
+            this._profile3.TabIndex = 21;
+            this._profile3.Text = "Profile3";
+            this._profile3.UseVisualStyleBackColor = true;
+            this._profile3.Click += new System.EventHandler(this._profile3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,6 +551,7 @@
         private System.Windows.Forms.Button _profile2;
         private System.Windows.Forms.Button _profile1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _profile3;
     }
 }
 

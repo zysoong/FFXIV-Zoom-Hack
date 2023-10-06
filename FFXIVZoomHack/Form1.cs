@@ -41,6 +41,7 @@ namespace FFXIVZoomHack
         const long pYMin = 0x148;
         const long pYMax = 0x14C;
         const long pHeight = 0x224;
+        const long pMode = 0x170;
 
         private NotifyIcon _notifyIcon;
         
@@ -185,14 +186,16 @@ namespace FFXIVZoomHack
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxZoom), BitConverter.GetBytes(Convert.ToSingle(20)));
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentZoom), ZoomBytes);
 
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), FOVBytes);
-                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), FOVBytes);
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMinFOV), BitConverter.GetBytes(Convert.ToSingle(0.69)));
+                mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMaxFOV), BitConverter.GetBytes(Convert.ToSingle(0.78)));
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pCurrentFOV), FOVBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMin), YMinBytes);
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pYMax), YMaxBytes);
 
                 mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pHeight), HeightBytes);
+
+                //mReader.WriteByteArray((IntPtr)(_processCollection[mReader].pModule + pMode), BitConverter.GetBytes(Convert.ToSingle(1)));
 
             });
         }
@@ -325,6 +328,15 @@ namespace FFXIVZoomHack
             _yMaxUpDown.Value = 0.13m;
         }
 
+        private void _profile3_Click(object sender, EventArgs e)
+        {
+            _zoomUpDown.Value = 1.6m;
+            _fovUpDown.Value = 0.78m;
+            _heightUpDown.Value = 0.10m;
+            _yMinUpDown.Value = 0.80m;
+            _yMaxUpDown.Value = -0.16m;
+        }
+
         private void _yMaxDefaultButton_Click(object sender, EventArgs e)
         {
 
@@ -332,11 +344,11 @@ namespace FFXIVZoomHack
 
         private void _default_Click(object sender, EventArgs e)
         {
-            _zoomUpDown.Value = 3.4m;
+            _zoomUpDown.Value = 6.0m;
             _fovUpDown.Value = 0.78m;
-            _heightUpDown.Value = 0.10m;
-            _yMinUpDown.Value = -0.03m;
-            _yMaxUpDown.Value = 0.00m;
+            _heightUpDown.Value = 0.0m;
+            _yMinUpDown.Value = -1.48m;
+            _yMaxUpDown.Value = 0.78m;
         }
     }
 }
